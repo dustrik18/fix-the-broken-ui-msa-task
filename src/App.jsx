@@ -15,7 +15,7 @@ function App() {
   // "Seconds since last update" ticker
   useEffect(() => {
     const interval = setInterval(() => {
-      setSecondsSinceUpdate(secondsSinceUpdate + 1)
+      setSecondsSinceUpdate(s => s + 1)
     }, 1000)
     return () => clearInterval(interval)
   }, [])
@@ -61,7 +61,7 @@ function App() {
 
       <ul className="member-list">
         {members.map((member) => (
-          <li className="member-row">
+          <li className="member-row" key={member.id}>
             <span className="member-name">{member.name}</span>
             <button
               className={`status-pill ${member.status === 'On track' ? 'ok' : 'blocked'}`}
@@ -69,9 +69,14 @@ function App() {
             >
               {member.status}
             </button>
-            <div className="remove-icon" onClick={() => removeMember(member.id)}>
+            <button
+              className="remove-icon"
+              onClick={() => removeMember(member.id)}
+              aria-label={`Remove ${member.name}`}
+            >
               ✕
-            </div>
+            </button>
+            
           </li>
         ))}
       </ul>
