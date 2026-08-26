@@ -19,3 +19,5 @@ npm run dev
 ```
 
 Requires Node 18 or newer.
+# fix-the-broken-ui-msa-task
+This task was a part of MSA SRM recruitment process
